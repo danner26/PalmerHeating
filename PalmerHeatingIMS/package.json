@@ -9,11 +9,22 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
+<<<<<<< HEAD
     "meteor-node-stubs": "^0.4.1"
   },
   "meteor": {
     "mainModule": {
       "client": "client/main.js",
+=======
+    "meteor-node-stubs": "^0.4.1",
+    "mongoose": "^5.3.9",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.jsx",
+>>>>>>> wip
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
