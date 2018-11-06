@@ -1,0 +1,29 @@
+{
+  "name": "PalmerHeating",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  },
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+  },
+  "jest": {
+    
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "jsx-a11y/href-no-hash": "off"
+    }
+  }
+}
