@@ -1,5 +1,5 @@
 {
-  "name": "PalmerHeating_IMS",
+  "name": "PalmerHeatingIMS",
   "private": true,
   "scripts": {
     "start": "meteor run",
@@ -10,12 +10,12 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "meteor-node-stubs": "^0.4.1",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0"
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0"
   },
   "meteor": {
     "mainModule": {
-      "client": "client/main.js",
+      "client": "client/main.jsx",
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
