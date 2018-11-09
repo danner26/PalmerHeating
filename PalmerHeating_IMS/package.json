@@ -1,36 +1,24 @@
 {
-  "name": "palmerheating_ims",
-  "version": "0.1.0",
+  "name": "PalmerHeating_IMS",
   "private": true,
-  "dependencies": {
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-scripts": "2.1.1"
-  },
-  "devDependencies": {
-
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
+  "dependencies": {
+    "@babel/runtime": "^7.1.2",
+    "material-ui": "^0.20.2",
+    "meteor-node-stubs": "^0.4.1",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
   },
-  "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "jsx-a11y/href-no-hash": "off"
-    }
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.jsx",
+      "server": "server/main.js"
+    },
+    "testModule": "tests/main.js"
+  }
 }
