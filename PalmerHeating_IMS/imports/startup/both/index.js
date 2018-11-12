@@ -1,7 +1,9 @@
 // Import modules used by both client and server
-// user methods
+// e.g. useraccounts configuration file.
+
+// import counter collection and common methods
 import '../../api/users/methods';
 
-// counter collection and methods
+// import counter collection and common methods
 import '../../api/counters/counters';
 import '../../api/counters/methods';

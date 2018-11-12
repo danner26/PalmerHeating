@@ -1,3 +1,7 @@
+/**
+ * Accounts Setup
+ */
+
 import { Accounts } from 'meteor/accounts-base';
 import Counters from '../../api/counters/counters.js';
 
@@ -6,7 +10,6 @@ Accounts.onCreateUser((options, user) => {
   Counters.insert({
     _id: user._id,
     count: Number(0),
-    role: user.role
   });
   return user;
 });
