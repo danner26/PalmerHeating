@@ -10,6 +10,9 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 // import navbar
 import Navbar from '../components/Navbar';
 
+//import side-navbar
+
+
 // import routes
 import Landing from '../pages/Landing';
 import Login from '../pages/Login';

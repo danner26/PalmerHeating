@@ -14,5 +14,5 @@ import App from '../../ui/layouts/App';
 
 // mount app
 Meteor.startup(() => {
-  render(<App />, document.getElementById('react-root'));
+  render(<App />, document.getElementById('render-target'));
 });
