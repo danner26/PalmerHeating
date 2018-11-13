@@ -8,12 +8,12 @@ import './Navbar.scss';
 const PublicNav = () => [
   <li key="login" className="nav-item">
     <span className="nav-link">
-      <NavLink to="/login">Login</NavLink>
+      <NavLink to="/login" activeClassName="active-nav">Login</NavLink>
     </span>
   </li>,
   <li key="signup" className="nav-item">
     <span className="nav-link">
-      <NavLink to="/signup">Signup</NavLink>
+      <NavLink to="/signup" activeClassName="active-nav">Signup</NavLink>
     </span>
   </li>,
 ];
@@ -64,7 +64,7 @@ const Navbar = ({ loggedIn }) => (
   <nav className="navbar navbar-expand-md justify-content-between py-0">
     <Status loggedIn={loggedIn} />
     <span className="navbar-brand my-2">
-      <NavLink to="/">Brand</NavLink>
+      <NavLink to="/">Palmer Heating</NavLink>
     </span>
     <button
       className="navbar-toggler my-2"
