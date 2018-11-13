@@ -18,22 +18,7 @@ const PublicNav = () => [
   </li>,
 ];
 
-const SearchBar = () => (
-  <form className="form-inline">
-    <input
-      className="form-control mr-sm-2"
-      type="search"
-      placeholder="Search.."
-      aria-label="Search"
-    />
-    <button className="btn btn-secondary my-2 my-sm-0" type="button">
-      <i className="fa fa-search" />
-    </button>
-  </form>
-);
-
 const LoggedInNav = () => [
-  <SearchBar key="searchbar" />,
   <li key="dropdown" className="nav-item dropdown ml-4">
     <span
       className="nav-link dropdown-toggle"

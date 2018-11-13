@@ -6,12 +6,13 @@ import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 
 // import navbar
 import Navbar from '../components/Navbar';
 
-//import side-navbar
-
+//import SideNavbar
+import Sidebar from '../components/Sidebar';
 
 // import routes
 import Landing from '../pages/Landing';
@@ -28,29 +29,39 @@ import Spinner from '../components/Spinner';
 // import hoc to pass additional props to routes
 import PropsRoute from '../pages/PropsRoute';
 
+const Main = styled.main`
+    position: relative;
+    overflow: hidden;
+    transition: all .15s;
+    margin-left: ${props => (props.expanded ? 240 : 64)}px;
+`;
+
 const App = props => (
   <Router>
     <div>
-      <PropsRoute component={Navbar} {...props} />
-      {props.loggingIn && <Spinner />}
-      <Switch>
-        <PropsRoute exact path="/" component={Landing} {...props} />
-        <PropsRoute path="/login" component={Login} {...props} />
-        <PropsRoute path="/signup" component={Signup} {...props} />
-        <PropsRoute exact path="/profile" component={Profile} {...props} />
-        <PropsRoute exact path="/profile/:_id" component={Profile} {...props} />
-        <PropsRoute
-          path="/recover-password"
-          component={RecoverPassword}
-          {...props}
-        />
-        <PropsRoute
-          path="/reset-password/:token"
-          component={ResetPassword}
-          {...props}
-        />
-        <PropsRoute component={NotFound} {...props} />
-      </Switch>
+      <PropsRoute component={Sidebar} {...props} />
+      <Main expanded={Sidebar.getExpand}>
+        <PropsRoute component={Navbar} {...props} />
+        {props.loggingIn && <Spinner />}
+        <Switch>
+          <PropsRoute exact path="/" component={Landing} {...props} />
+          <PropsRoute path="/login" component={Login} {...props} />
+          <PropsRoute path="/signup" component={Signup} {...props} />
+          <PropsRoute exact path="/profile" component={Profile} {...props} />
+          <PropsRoute exact path="/profile/:_id" component={Profile} {...props} />
+          <PropsRoute
+            path="/recover-password"
+            component={RecoverPassword}
+            {...props}
+          />
+          <PropsRoute
+            path="/reset-password/:token"
+            component={ResetPassword}
+            {...props}
+          />
+          <PropsRoute component={NotFound} {...props} />
+        </Switch>
+      </Main>
     </div>
   </Router>
 );
