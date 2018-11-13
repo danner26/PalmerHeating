@@ -18,7 +18,7 @@ import SideNav, {
 import './Sidebar.scss';
 
 const PublicNav = () => [
-  <NavLink key="home" to="/">
+  <NavLink exact key="home" to="/" activeClassName="active-page">
     <NavItem eventKey="home">
       <NavIcon>
         <i
@@ -31,7 +31,7 @@ const PublicNav = () => [
       </NavText>
     </NavItem>
   </NavLink>,
-  <NavLink key="login" to="/login">
+  <NavLink exact key="login" to="/login" activeClassName="active-page">
     <NavItem eventKey="login">
       <NavIcon>
         <i
@@ -47,7 +47,7 @@ const PublicNav = () => [
 ];
 
 const LoggedInNav = () => [
-  <NavLink key="home" to="/">
+  <NavLink exact key="home" to="/" activeClassName="active-page">
     <NavItem eventKey="home">
       <NavIcon>
         <i
@@ -60,7 +60,7 @@ const LoggedInNav = () => [
       </NavText>
     </NavItem>
   </NavLink>,
-  <NavLink key="profile" to="/profile">
+  <NavLink exact key="profile" to="/profile" activeClassName="active-page">
     <NavItem eventKey="profile">
       <NavIcon>
         <i
