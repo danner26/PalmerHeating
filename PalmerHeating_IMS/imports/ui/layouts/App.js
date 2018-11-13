@@ -33,7 +33,7 @@ const Main = styled.main`
     position: relative;
     overflow: hidden;
     transition: all .15s;
-    margin-left: ${props => (props.expanded ? 240 : 64)}px;
+    margin-left: ${props => (Sidebar.expanded ? 240 : 64)}px;
 `;
 
 const App = props => (
