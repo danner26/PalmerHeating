@@ -1,23 +1,26 @@
-/* eslint-disable no-undef, no-underscore-dangle */
-// Tests for the behavior of the collection
-// https://guide.meteor.com/testing.html
-
 import { Meteor } from 'meteor/meteor';
 import { assert } from 'meteor/practicalmeteor:chai';
-import Counters from './counters.js';
+import Inventory from './inventory_items.js';
 
 if (Meteor.isServer) {
-  describe('counters collection', function() {
+  describe('inventory collection', function() {
     it('inserts correctly', function() {
-      const counterId = Counters.insert({
-        _id: this.userId,
-        count: 0,
+      const inventoryID = Inventory.insert({
+        _id:
+          Inventory.find({}, { _id: '$_id' })
+          .limit(1)
+            .sort({ $natural: -1 }) + 1,
+        name: 'Test Item',
+        description: 'Test item description',
+        summerLimit: 12,
+        winterLimit: 20,
+        Price: 32.23,
       });
-      const added = Counters.find({ _id: counterId });
+      const added = Inventory.find({ _id: inventoryID });
       const collectionName = added._getCollectionName();
       const count = added.count();
 
-      assert.equal(collectionName, 'counters');
+      assert.equal(collectionName, 'inventory');
       assert.equal(count, 1);
     });
   });

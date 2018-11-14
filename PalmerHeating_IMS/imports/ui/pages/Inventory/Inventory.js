@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ControlledPopup from '../../components/ControlledPopup'
 
 import './Inventory.scss';
 
@@ -13,6 +14,7 @@ class Inventory extends React.Component {
     return (
       <div className="Inventory-page">
         <h1>Inventory Page</h1>
+        <ControlledPopup />
       </div>
     );
   }

@@ -11,6 +11,7 @@ import './styles/main.scss';
 
 // import client routes
 import App from '../../ui/layouts/App';
+Meteor.subscribe('inventory');
 
 // mount app
 Meteor.startup(() => {

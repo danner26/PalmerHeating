@@ -25,10 +25,6 @@ const checkLoggedInError = {
 
 /** **************** Methods **************** */
 
-/**
- * countersIncrease
- */
-
 // eslint-disable-next-line no-unused-vars, arrow-body-style
 const beforeHookExample = (methodArgs, methodOptions) => {
   // console.log('countersIncrease before hook');
@@ -41,3 +37,46 @@ const afterHookExample = (methodArgs, returnValue, methodOptions) => {
   // perform tasks
   return returnValue;
 };
+
+function getNextID() {
+  return (
+    Inventory.find({}, { itemNumber: '$itemNumber' })
+      .limit(1)
+      .sort({ $natural: -1 }) + 1
+  );
+}
+
+const inventoryAdd = new ValidatedMethod({
+  name: 'inventory.add',
+  mixins,
+  beforeHooks: [beforeHookExample],
+  afterHooks: [afterHookExample],
+  checkLoggedInError,
+  checkRoles: {
+    roles: ['admin', 'secretary'],
+    rolesError: {
+      error: 'not-allowed',
+      message: 'You are not allowed to call this method',
+    },
+  },
+  validate: new SimpleSchema({
+    _id: String,
+    itemNumber: SimpleSchema.Integer,
+    name: String,
+    description: String,
+    summerLimit: SimpleSchema.Integer,
+    winterLimit: SimpleSchema.Integer,
+    Price: Number,
+    inStock: SimpleSchema.Integer,
+  }).validator(),
+  run() {
+    console.log('inventory.add', this);
+    if (Meteor.isServer) {
+      // secure code - not available on the client
+    }
+    // call code on client and server (optimistic UI)
+    return Inventory.insert({ _id: getNextID() });
+  },
+});
+
+export default inventoryAdd;
