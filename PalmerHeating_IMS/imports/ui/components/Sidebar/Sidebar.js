@@ -47,19 +47,6 @@ const PublicNav = () => [
 ];
 
 const LoggedInNav = () => [
-  <NavLink exact key="home" to="/" activeClassName="active-page">
-    <NavItem eventKey="home">
-      <NavIcon>
-        <i
-          className="fa fa-fw fa-home"
-          style={{ fontSize: '1.75em', verticalAlign: 'middle' }}
-        />
-      </NavIcon>
-      <NavText style={{ paddingRight: 32 }} title="Home">
-        Home
-      </NavText>
-    </NavItem>
-  </NavLink>,
   <NavLink exact key="profile" to="/profile" activeClassName="active-page">
     <NavItem eventKey="profile">
       <NavIcon>
@@ -70,6 +57,19 @@ const LoggedInNav = () => [
       </NavIcon>
       <NavText style={{ paddingRight: 32 }} title="profile">
         Profile
+      </NavText>
+    </NavItem>
+  </NavLink>,
+  <NavLink exact key="inventory" to="/inventory" activeClassName="active-page">
+    <NavItem eventKey="inventory">
+      <NavIcon>
+        <i
+          className="fa fa-fw fa-archive"
+          style={{ fontSize: '1.75em', verticalAlign: 'middle' }}
+        />
+      </NavIcon>
+      <NavText style={{ paddingRight: 32 }} title="inventory">
+        Inventory
       </NavText>
     </NavItem>
   </NavLink>,
@@ -94,7 +94,7 @@ class Sidebar extends React.Component {
       <SideNav onToggle={this.handleToggle}>
         <SideNav.Toggle />
         <SideNav.Nav>
-          {Sidebar.loggedIn ? <LoggedInNav /> : <PublicNav />}
+          {this.props.loggedIn ? <LoggedInNav /> : <PublicNav />}
         </SideNav.Nav>
       </SideNav>
     );

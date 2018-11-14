@@ -12,3 +12,5 @@ import '../../api/counters/methods.js';
 import '../../api/counters/publications.js';
 
 // import another api
+import '../../api/inventory/methods.js';
+import '../../api/inventory/inventory.js';
