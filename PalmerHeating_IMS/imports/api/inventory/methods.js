@@ -1,8 +1,5 @@
-/**
- * Meteor methods
- */
-
 import { Meteor } from 'meteor/meteor';
+import Mongo from 'meteor/mongo';
 import { Random } from 'meteor/random';
 import SimpleSchema from 'simpl-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
@@ -10,7 +7,7 @@ import { LoggedInMixin } from 'meteor/tunifight:loggedin-mixin';
 import { MethodHooks } from 'meteor/lacosta:method-hooks';
 import { CallPromiseMixin } from 'meteor/didericis:callpromise-mixin';
 
-import Inventory from './inventory_items.js';
+import InventoryItem from './inventory_items.js';
 
 /** **************** Helpers **************** */
 
@@ -40,13 +37,13 @@ const afterHookExample = (methodArgs, returnValue, methodOptions) => {
 
 function getNextID() {
   return (
-    Inventory.find({}, { itemNumber: '$itemNumber' })
+    InventoryItem.find({}, { itemNumber: '$itemNumber' })
       .limit(1)
       .sort({ $natural: -1 }) + 1
   );
 }
 
-const inventoryAdd = new ValidatedMethod({
+export const inventoryAdd = new ValidatedMethod({
   name: 'inventory.add',
   mixins,
   beforeHooks: [beforeHookExample],
@@ -60,7 +57,6 @@ const inventoryAdd = new ValidatedMethod({
     },
   },
   validate: new SimpleSchema({
-    _id: String,
     itemNumber: SimpleSchema.Integer,
     name: String,
     description: String,
@@ -75,8 +71,37 @@ const inventoryAdd = new ValidatedMethod({
       // secure code - not available on the client
     }
     // call code on client and server (optimistic UI)
-    return Inventory.insert({ _id: getNextID() });
+    return InventoryItem.insert({ _id: getNextID() });
   },
 });
 
-export default inventoryAdd;
+export const inventoryList = new ValidatedMethod({
+  name: 'inventory.list',
+  mixins,
+  beforeHooks: [beforeHookExample],
+  afterHooks: [afterHookExample],
+  checkLoggedInError,
+  checkRoles: {
+    roles: ['admin', 'secretary', 'technician'],
+    rolesError: {
+      error: 'not-allowed',
+      message: 'You are not allowed to call this method',
+    },
+  },
+  validate: new SimpleSchema({
+    itemNumber: SimpleSchema.Integer,
+    name: String,
+    description: String,
+    summerLimit: SimpleSchema.Integer,
+    winterLimit: SimpleSchema.Integer,
+    Price: Number,
+    inStock: SimpleSchema.Integer,
+  }).validator(),
+  run() {
+    return InventoryItem.find().fetch();
+  },
+});
+
+export const GetInventory = () => {
+  return Mongo.Collection('inventory');
+};

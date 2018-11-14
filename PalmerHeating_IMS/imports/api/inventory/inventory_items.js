@@ -4,10 +4,10 @@ import Meteor from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 
 // define collection
-const Inventory = new Mongo.Collection('inventory');
+const InventoryItem = new Mongo.Collection('inventory');
 
 const InventorySchema = new SimpleSchema({
-  _id: String,
+  _id: Mongo.Collection.ObjectID,
   itemNumber: SimpleSchema.Integer,
   name: String,
   description: String,
@@ -18,19 +18,6 @@ const InventorySchema = new SimpleSchema({
 });
 
 // attach schema
-Inventory.attachSchema(InventorySchema);
+InventoryItem.attachSchema(InventorySchema);
 
-if (Inventory.find().count() === 0) {
-  Inventory.insert({
-    _id: new Mongo.Collection.ObjectID()._str,
-    itemNumber: 1,
-    name: 'Test Item 1',
-    description: 'Test Description 1',
-    summerLimit: 6,
-    winterLimit: 12,
-    Price: 13.22,
-    inStock: 10,
-  });
-}
-
-export default Inventory;
+export default InventoryItem;

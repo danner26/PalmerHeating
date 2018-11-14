@@ -40,3 +40,4 @@ didericis:callpromise-mixin
 lacosta:method-hooks
 tunifight:loggedin-mixin
 underscore@1.0.10
+autopublish
