@@ -22,7 +22,7 @@ const ResumeSchema = new SimpleSchema({
   'loginTokens.$': LoginTokensSchema,
 });
 const LoginTokensSchema = new SimpleSchema({
-  when: Date,
+  when: Mongo.Collection.ISODate,
   haskedToken: String,
 });
 const EmailSchema = new SimpleSchema({
@@ -39,13 +39,13 @@ const StatusSchema = new SimpleSchema({
   idle: Boolean,
 });
 const LastLoginSchema = new SimpleSchema({
-  date: Date,
+  date: Mongo.Collection.ISODate,
   ipAddr: String,
   userAgent: String,
 });
 export const UserSchema = new SimpleSchema({
     _id : SimpleSchema.Integer,
-    createdAt : Date,
+    createdAt : Mongo.Collection.ISODate,
     services: ServicesSchema,
     emails: EmailSchema,
     roles: RolesSchema,
