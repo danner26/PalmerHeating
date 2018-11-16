@@ -13,12 +13,17 @@ import SimpleSchema from 'simpl-schema';
 const Users = new Mongo.Collection('useraccounts');
 
 // define schema
-const ResumeSchema = new SimpleSchema({
-
-});
 const ServicesSchema = new SimpleSchema({
   password: String,
   resume: ResumeSchema,
+});
+const ResumeSchema = new SimpleSchema({
+  loginTokens: Array,
+  'loginTokens.$': LoginTokensSchema,
+});
+const LoginTokensSchema = new SimpleSchema({
+  when: Date,
+  haskedToken: String,
 });
 const EmailSchema = new SimpleSchema({
   address: String,
@@ -28,14 +33,15 @@ const RolesSchema = new SimpleSchema({
   __global_roles__: Array,
   '__global_roles__.$': String,
 });
+const StatusSchema = new SimpleSchema({
+  lastLogin: LastLoginSchema,
+  online: Boolean,
+  idle: Boolean,
+});
 const LastLoginSchema = new SimpleSchema({
   date: Date,
   ipAddr: String,
   userAgent: String,
-});
-const StatusSchema = new SimpleSchema({
-  lastLogin: LastLoginSchema,
-  online: Boolean,
 });
 export const UserSchema = new SimpleSchema({
     _id : SimpleSchema.Integer,
