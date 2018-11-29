@@ -72,7 +72,12 @@ class Inventory extends React.Component {
   render() {
     return (
       <div className="Inventory-page">
-        <h1>Inventory Page</h1>
+        <div>
+          <h1>Inventory Page</h1>
+          <button onClick={(e) => this.handleClick(e)}>
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+          </button>
+        </div>
 
         {this.getInventory()}
         <ControlledPopup />
@@ -80,6 +85,8 @@ class Inventory extends React.Component {
     );
   }
 }
+
+
 
 Inventory.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
