@@ -73,6 +73,19 @@ const LoggedInNav = () => [
       </NavText>
     </NavItem>
   </NavLink>,
+  <NavLink exact key="tickets" to="/tickets" activeClassName="active-page">
+    <NavItem eventKey="tickets">
+      <NavIcon>
+        <i
+          className="fa fa-ticket fa-fw"
+          style={{ fontSize: '1.75em', verticalAlign: 'middle' }}
+        />
+      </NavIcon>
+      <NavText style={{ paddingRight: 32 }} title="tickets">
+        Tickets
+      </NavText>
+    </NavItem>
+  </NavLink>,
 ];
 
 class Sidebar extends React.Component {
