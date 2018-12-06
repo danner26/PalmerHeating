@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 // React-Bootstreap-Table
 import BootstrapTable from 'react-bootstrap-table-next';
-import ControlledPopup from '../../components/ControlledPopup';
+import AddInventoryPopup from '../../components/inventory_components/AddInventoryPopup';
+import EditInventoryPopup from '../../components/inventory_components/EditInventoryPopup';
+import DeleteInventoryPopup from '../../components/inventory_components/DeleteInventoryPopup';
 
 import GetInventory from '../../../api/inventory/inventory_items.js';
 
@@ -26,7 +30,7 @@ class Inventory extends React.Component {
     const data = theInv.find({}).fetch();
     for (let i = 0; i < quantity; i++) {
       theInventory.push({
-        itemNumber: data[i].itemNumber,
+        _id: data[i]._id,
         name: data[i].name,
         description: data[i].description,
         summerLimit: data[i].summerLimit,
@@ -36,11 +40,22 @@ class Inventory extends React.Component {
       });
     }
 
+    function permissionFormatter() {
+      if (
+        Meteor.userId() &&
+        Roles.userIsInRole(Meteor.userId(), ['admin', 'secretary'])
+      ) {
+        return (
+          <div className="inventoryFunctionBtns">
+            <EditInventoryPopup />
+            <DeleteInventoryPopup />
+          </div>
+        );
+      }
+      return <span>TEST</span>;
+    }
+
     const columns = [
-      {
-        dataField: 'itemNumber',
-        text: '#',
-      },
       {
         dataField: 'name',
         text: 'Name',
@@ -57,11 +72,17 @@ class Inventory extends React.Component {
         dataField: 'inStock',
         text: 'In Stock',
       },
+      {
+        dataField: 'functions',
+        isDummyField: true,
+        text: 'Functions',
+        formatter: permissionFormatter,
+      },
     ];
 
     return (
       <BootstrapTable
-        keyField="itemNumber"
+        keyField="_id"
         data={theInventory}
         columns={columns}
         bootstrap4
@@ -70,16 +91,27 @@ class Inventory extends React.Component {
   };
 
   render() {
+    const reset = React.createElement(
+      'button',
+      { type: 'button' },
+      '<i className="fa fa-refresh" aria-hidden="true">'
+    );
+
     return (
       <div className="Inventory-page">
-        <h1>Inventory Page</h1>
+        <div>
+          <h1>Inventory Page</h1>
+          {reset}
+        </div>
 
         {this.getInventory()}
-        <ControlledPopup />
+        <AddInventoryPopup />
       </div>
     );
   }
 }
+
+
 
 Inventory.propTypes = {
   loggedIn: PropTypes.bool.isRequired,

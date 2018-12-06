@@ -11,7 +11,7 @@ import styled from 'styled-components';
 // import navbar
 import Navbar from '../components/Navbar';
 
-//import SideNavbar
+// import SideNavbar
 import Sidebar from '../components/Sidebar';
 
 // import routes
@@ -35,10 +35,10 @@ import Spinner from '../components/Spinner';
 import PropsRoute from '../pages/PropsRoute';
 
 const Main = styled.main`
-    position: relative;
-    overflow: hidden;
-    transition: all .15s;
-    margin-left: ${props => (Sidebar.expanded ? 240 : 64)}px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.15s;
+  margin-left: ${props => (Sidebar.expanded ? 240 : 64)}px;
 `;
 
 const App = props => (
@@ -53,9 +53,19 @@ const App = props => (
           <PropsRoute path="/login" component={Login} {...props} />
           <PropsRoute path="/signup" component={Signup} {...props} />
           <PropsRoute exact path="/profile" component={Profile} {...props} />
-          <PropsRoute exact path="/profile/:_id" component={Profile} {...props} />
-          <PropsRoute exact path="/inventory" component={Inventory} {...props} />
           <PropsRoute exact path="/tickets" component={Tickets} {...props} />
+          <PropsRoute
+            exact
+            path="/profile/:_id"
+            component={Profile}
+            {...props}
+          />
+          <PropsRoute
+            exact
+            path="/inventory"
+            component={Inventory}
+            {...props}
+          />
           <PropsRoute
             path="/recover-password"
             component={RecoverPassword}
