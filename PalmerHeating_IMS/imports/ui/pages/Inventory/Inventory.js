@@ -4,7 +4,9 @@ import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 // React-Bootstreap-Table
 import BootstrapTable from 'react-bootstrap-table-next';
-import ControlledPopup from '../../components/ControlledPopup';
+import AddInventoryPopup from '../../components/inventory_components/AddInventoryPopup';
+import EditInventoryPopup from '../../components/inventory_components/EditInventoryPopup';
+import DeleteInventoryPopup from '../../components/inventory_components/DeleteInventoryPopup';
 
 import GetInventory from '../../../api/inventory/inventory_items.js';
 
@@ -43,7 +45,12 @@ class Inventory extends React.Component {
         Meteor.userId() &&
         Roles.userIsInRole(Meteor.userId(), ['admin', 'secretary'])
       ) {
-        return <span>{Meteor.userId()}</span>;
+        return (
+          <div className="inventoryFunctionBtns">
+            <EditInventoryPopup />
+            <DeleteInventoryPopup />
+          </div>
+        );
       }
       return <span>TEST</span>;
     }
@@ -94,11 +101,11 @@ class Inventory extends React.Component {
       <div className="Inventory-page">
         <div>
           <h1>Inventory Page</h1>
-          {this.reset}
+          {reset}
         </div>
 
         {this.getInventory()}
-        <ControlledPopup />
+        <AddInventoryPopup />
       </div>
     );
   }
