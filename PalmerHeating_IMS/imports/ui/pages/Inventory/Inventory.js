@@ -20,12 +20,18 @@ class Inventory extends React.Component {
     this.expanded = false;
     this.invObject= '';
     this.rowSelect = this.rowSelect.bind(this);
-    this.inventoryObjectItem = React.createRef(); // as in docs
+    this.state = {
+      rowID: 'sdfv',
+    }
   }
 
   rowSelect = inv => {
-    this.inventoryObjectItem = inv;
-    this.invObject = inv;
+    return true;
+  };
+
+  rowClick = inv => {
+    this.setState({ rowID: inv._id });
+    this.rowSelect(inv);
   }
 
   getInventory = () => {
@@ -48,15 +54,9 @@ class Inventory extends React.Component {
       });
     }
 
-    function update(e) {
-      // console.log(e);
-      console.log(this.props.removeItem);
-      // this.props.onUpdate(e.target.row);
-    }
-
     const rowEvents = {
       onClick: (e, row, rowIndex) => {
-        this.rowSelect(row);
+        this.rowClick(row);
       },
     };
 
@@ -67,8 +67,8 @@ class Inventory extends React.Component {
       ) {
         return (
           <div className="inventoryFunctionBtns">
-            <EditInventoryPopup onRowSelect={this} />
-            <DeleteInventoryPopup />
+            <EditInventoryPopup />
+            <DeleteInventoryPopup onRowSelect={this.rowSelect} />
           </div>
         );
       }
@@ -110,6 +110,11 @@ class Inventory extends React.Component {
       />
     );
   };
+
+  handler() {
+    console.log('handling');
+    return this.rowID;
+  }
 
   render() {
     const reset = React.createElement(

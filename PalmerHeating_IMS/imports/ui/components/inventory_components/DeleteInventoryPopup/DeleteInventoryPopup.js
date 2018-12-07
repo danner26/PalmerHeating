@@ -11,16 +11,16 @@ class DeleteInventoryPopup extends React.Component {
     this.removeItem = this.removeItem.bind(this);
   }
 
+  removeItem = () => {
+    console.log(this);
+  };
+
   openModal() {
     this.setState({ open: true });
   }
 
   closeModal() {
     this.setState({ open: false });
-  }
-
-  removeItem() {
-    console.log(this.invObject);
   }
 
   render() {
