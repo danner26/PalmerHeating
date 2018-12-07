@@ -25,6 +25,9 @@ import ResetPassword from '../pages/ResetPassword';
 
 import Inventory from '../pages/Inventory';
 
+// import Tickets
+import Tickets from '../pages/Tickets';
+
 // import Spinner
 import Spinner from '../components/Spinner';
 
@@ -50,6 +53,7 @@ const App = props => (
           <PropsRoute path="/login" component={Login} {...props} />
           <PropsRoute path="/signup" component={Signup} {...props} />
           <PropsRoute exact path="/profile" component={Profile} {...props} />
+          <PropsRoute exact path="/tickets" component={Tickets} {...props} />
           <PropsRoute
             exact
             path="/profile/:_id"
