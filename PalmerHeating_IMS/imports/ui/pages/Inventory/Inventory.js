@@ -18,6 +18,14 @@ class Inventory extends React.Component {
   constructor(props) {
     super(props);
     this.expanded = false;
+    this.invObject= '';
+    this.rowSelect = this.rowSelect.bind(this);
+    this.inventoryObjectItem = React.createRef(); // as in docs
+  }
+
+  rowSelect = inv => {
+    this.inventoryObjectItem = inv;
+    this.invObject = inv;
   }
 
   getInventory = () => {
@@ -40,6 +48,18 @@ class Inventory extends React.Component {
       });
     }
 
+    function update(e) {
+      // console.log(e);
+      console.log(this.props.removeItem);
+      // this.props.onUpdate(e.target.row);
+    }
+
+    const rowEvents = {
+      onClick: (e, row, rowIndex) => {
+        this.rowSelect(row);
+      },
+    };
+
     function permissionFormatter() {
       if (
         Meteor.userId() &&
@@ -47,7 +67,7 @@ class Inventory extends React.Component {
       ) {
         return (
           <div className="inventoryFunctionBtns">
-            <EditInventoryPopup />
+            <EditInventoryPopup onRowSelect={this} />
             <DeleteInventoryPopup />
           </div>
         );
@@ -85,6 +105,7 @@ class Inventory extends React.Component {
         keyField="_id"
         data={theInventory}
         columns={columns}
+        rowEvents={rowEvents}
         bootstrap4
       />
     );

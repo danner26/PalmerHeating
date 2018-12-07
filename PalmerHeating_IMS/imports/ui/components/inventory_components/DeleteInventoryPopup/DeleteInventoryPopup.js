@@ -8,6 +8,7 @@ class DeleteInventoryPopup extends React.Component {
     this.state = { open: false };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.removeItem = this.removeItem.bind(this);
   }
 
   openModal() {
@@ -16,6 +17,10 @@ class DeleteInventoryPopup extends React.Component {
 
   closeModal() {
     this.setState({ open: false });
+  }
+
+  removeItem() {
+    console.log(this.invObject);
   }
 
   render() {
@@ -39,14 +44,28 @@ class DeleteInventoryPopup extends React.Component {
               className="close"
               role="button"
               onClick={this.closeModal}
+              onKeyPress={this.closeModal}
               tabIndex={0}
             >
               &times;
             </a>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-            magni magni omnis delectus nemo, maxime molestiae dolorem numquam
-            mollitia, voluptate ea, accusamus excepturi deleniti ratione
-            sapiente! Laudantium, aperiam doloribus. Odit, aut.
+            Are you sure you want to delete this item?
+            <a
+              role="button"
+              onClick={this.removeItem}
+              onKeyPress={this.removeItem}
+              tabIndex={-1}
+            >
+              <button type="button">Yes</button>
+            </a>
+            <a
+              role="button"
+              onClick={this.closeModal}
+              onKeyPress={this.closeModal}
+              tabIndex={-2}
+            >
+              <button type="button">No</button>
+            </a>
           </div>
         </Popup>
       </div>
