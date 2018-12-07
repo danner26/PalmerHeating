@@ -8,7 +8,6 @@ const InventoryItem = new Mongo.Collection('inventory');
 
 const InventorySchema = new SimpleSchema({
   _id: Mongo.Collection.ObjectID,
-  itemNumber: SimpleSchema.Integer,
   name: String,
   description: String,
   summerLimit: SimpleSchema.Integer,

@@ -4,8 +4,6 @@
 
 import { Meteor } from 'meteor/meteor';
 import { assert } from 'meteor/practicalmeteor:chai';
-import Counters from './counters.js';
-import { countersInsert, countersIncrease } from './methods.js';
 
 if (Meteor.isServer) {
   describe('counters method', function() {
