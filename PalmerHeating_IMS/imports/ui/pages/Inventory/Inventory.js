@@ -181,7 +181,11 @@ class Inventory extends React.Component {
       <div className="Inventory-page">
         <div>
           <h1>Inventory Page</h1>
-          <button type="button" onClick={this.handleReset.bind(this)}>
+          <button
+            className="button btn btn-info"
+            type="button"
+            onClick={this.handleReset.bind(this)}
+          >
             Reset
           </button>
         </div>
