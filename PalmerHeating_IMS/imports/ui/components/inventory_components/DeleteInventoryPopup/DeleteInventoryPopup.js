@@ -18,6 +18,7 @@ class DeleteInventoryPopup extends React.Component {
 
     console.log(toRemove._str);
     Meteor.call('inventory.remove', toRemove);
+    this.closeModal();
   };
 
   openModal() {
