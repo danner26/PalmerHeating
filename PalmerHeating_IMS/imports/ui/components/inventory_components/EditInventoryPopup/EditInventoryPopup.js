@@ -22,7 +22,7 @@ class EditInventoryPopup extends React.Component {
     return (
       <div>
         <button
-          className="button"
+          className="button btn btn-primary"
           onClick={this.openModal}
           type="button"
           tabIndex={0}

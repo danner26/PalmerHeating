@@ -33,7 +33,7 @@ class DeleteInventoryPopup extends React.Component {
     return (
       <div>
         <button
-          className="button"
+          className="button btn btn-danger"
           onClick={this.openModal}
           type="button"
           tabIndex={0}
