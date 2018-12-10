@@ -47,9 +47,7 @@ class Inventory extends React.Component {
     }
   }
 
-  rowSelect = inv => {
-    return this.getRow();
-  }
+  rowSelect = () => this.getRow()
 
   rowClick = inv => {
     this.setState({ rowID: inv._id });
@@ -155,6 +153,8 @@ class Inventory extends React.Component {
       ],
     };
 
+    const table = this.invTable;
+
     return (
       <BootstrapTable
         keyField="_id"
@@ -163,19 +163,27 @@ class Inventory extends React.Component {
         rowEvents={rowEvents}
         pagination={paginationFactory(options)}
         bootstrap4
-        ref='invtable'
+        ref={table => {
+          this.invTable = table;
+        }}
       />
     );
   };
 
+  handleReset() {
+    console.log(this.invTable);
+    this.invTable.reset();
+  }
+
   render() {
-    const reset = React.createElement('button', { type: 'button' }, 'Refresh');
 
     return (
       <div className="Inventory-page">
         <div>
           <h1>Inventory Page</h1>
-          {reset}
+          <button type="button" onClick={this.handleReset.bind(this)}>
+            Reset
+          </button>
         </div>
 
         {this.getInventory()}

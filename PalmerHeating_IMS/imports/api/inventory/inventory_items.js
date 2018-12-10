@@ -17,7 +17,7 @@ const InventorySchema = new SimpleSchema({
 });
 
 InventoryItem.allow({
-  remove(invID) {
+  remove() {
     return true;
   },
 });
