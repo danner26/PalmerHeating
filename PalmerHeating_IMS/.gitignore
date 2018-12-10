@@ -1,4 +1,4 @@
-# Logs
+node_modules/# Logs
 logs
 *.log
 npm-debug.log*
@@ -30,14 +30,13 @@ bower_components
 .lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
-build/
-
+build/Release
 
 # Dependency directories
 node_modules/
 jspm_packages/
 
-# TypeScript v1 declaration files
+# Typescript v1 declaration files
 typings/
 
 # Optional npm cache directory
@@ -61,4 +60,8 @@ typings/
 # next.js build output
 .next
 
-test\.json
+# mup
+.deploy
+
+# macOS
+.DS_Store

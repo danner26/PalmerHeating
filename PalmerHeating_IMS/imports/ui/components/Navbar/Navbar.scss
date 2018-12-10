@@ -1,0 +1,33 @@
+.navbar {
+  background-color: #2C4076;
+
+  * {
+    :hover,
+    :active {
+      text-decoration: none;
+    }
+  }
+  a {
+    color: #96A3C6;
+  }
+  .active-nav {
+    color: #2C4076;
+  }
+  .active-nav:hover {
+    cursor: default;
+  }
+  .navbar-brand a {
+    color: #96A3C6;
+  }
+  .dropdown-item:active {
+    color: #2C4076;
+    background-color: #fff;
+  }
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
