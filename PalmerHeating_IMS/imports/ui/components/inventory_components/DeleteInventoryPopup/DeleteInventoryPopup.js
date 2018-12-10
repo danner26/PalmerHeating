@@ -2,6 +2,10 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 
+import { Meteor } from 'meteor/meteor';
+
+import GetInventory from '../../../../api/inventory/inventory_items.js';
+
 class DeleteInventoryPopup extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +16,10 @@ class DeleteInventoryPopup extends React.Component {
   }
 
   removeItem = () => {
-    console.log(this);
+    const toRemove = this.props.formatExtraData();
+    const theInv = GetInventory;
+    console.log(toRemove._str);
+    console.log(theInv.remove({ _id: toRemove }));
   };
 
   openModal() {

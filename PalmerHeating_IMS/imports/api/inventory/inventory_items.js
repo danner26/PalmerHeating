@@ -16,6 +16,12 @@ const InventorySchema = new SimpleSchema({
   inStock: SimpleSchema.Integer,
 });
 
+InventoryItem.allow({
+  remove(invID) {
+    return true;
+  },
+});
+
 // attach schema
 InventoryItem.attachSchema(InventorySchema);
 
