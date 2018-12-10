@@ -129,7 +129,7 @@ class Inventory extends React.Component {
     );
 
     const options = {
-      paginationSize: 9,
+      paginationSize: 7,
       pageStartIndex: 0,
       withFirstAndLast: true,
       firstPageText: 'First',
@@ -143,12 +143,12 @@ class Inventory extends React.Component {
       showTotal: true,
       paginationTotalRenderer: customTotal,
       sizePerPageList: [{
-          text: '10',
-          value: 10,
+          text: '8',
+          value: 8,
         },
         {
-          text: '25',
-          value: 25,
+          text: '15',
+          value: 15,
         },
       ],
     };
