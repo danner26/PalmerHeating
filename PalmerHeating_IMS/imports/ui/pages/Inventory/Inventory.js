@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
+import { createStore, combineReducers } from 'redux';
+import { Tracker } from 'meteor/tracker';
 // React-Bootstreap-Table
 import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 import AddInventoryPopup from '../../components/inventory_components/AddInventoryPopup';
 import EditInventoryPopup from '../../components/inventory_components/EditInventoryPopup';
 import DeleteInventoryPopup from '../../components/inventory_components/DeleteInventoryPopup';
@@ -14,6 +17,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import './Inventory.scss';
 
+const inventoryReducer = (state = [], action) => {
+  switch(action.type) {
+    case 'SET_INVENTORY':
+      return action.inventory;
+    default:
+      return state;
+  }
+};
+
+const reducers = combineReducers({ inventory: inventoryReducer});
+const store = createStore(reducers, {});
+
+Tracker.autorun(() => {
+  store.dispatch({
+    type: 'SET_INVENTORY',
+    inventory: GetInventory.find().fetch(),
+  });
+});
+
 class Inventory extends React.Component {
   constructor(props) {
     super(props);
@@ -21,18 +43,19 @@ class Inventory extends React.Component {
     this.invObject= '';
     this.rowSelect = this.rowSelect.bind(this);
     this.state = {
-      rowID: 'sdfv',
+      rowID: this.rowSelect,
     }
   }
 
   rowSelect = inv => {
-    return true;
-  };
+    return this.getRow();
+  }
 
   rowClick = inv => {
     this.setState({ rowID: inv._id });
-    this.rowSelect(inv);
   }
+
+  getRow = () => this.state.rowID;
 
   getInventory = () => {
     const theInv = GetInventory;
@@ -68,7 +91,7 @@ class Inventory extends React.Component {
         return (
           <div className="inventoryFunctionBtns">
             <EditInventoryPopup />
-            <DeleteInventoryPopup onRowSelect={this.rowSelect} />
+            <DeleteInventoryPopup {...this} onRowSelect={this.rowClick} />
           </div>
         );
       }
@@ -97,8 +120,40 @@ class Inventory extends React.Component {
         isDummyField: true,
         text: 'Functions',
         formatter: permissionFormatter,
+        formatExtraData: this.state.rowID,
       },
     ];
+
+    const customTotal = (from, to, size) => (
+      <span className="react-bootstrap-table-pagination-total">
+        Showing {from} to {to} of {size} Results
+      </span>
+    );
+
+    const options = {
+      paginationSize: 9,
+      pageStartIndex: 0,
+      withFirstAndLast: true,
+      firstPageText: 'First',
+      prePageText: 'Back',
+      nextPageText: 'Next',
+      lastPageText: 'Last',
+      nextPageTitle: 'First Page',
+      prePageTitle: 'Pre Page',
+      firstPageTitle: 'Next Page',
+      lastPageTitle: 'Last Page',
+      showTotal: true,
+      paginationTotalRenderer: customTotal,
+      sizePerPageList: [{
+          text: '10',
+          value: 10,
+        },
+        {
+          text: '25',
+          value: 25,
+        },
+      ],
+    };
 
     return (
       <BootstrapTable
@@ -106,22 +161,15 @@ class Inventory extends React.Component {
         data={theInventory}
         columns={columns}
         rowEvents={rowEvents}
+        pagination={paginationFactory(options)}
         bootstrap4
+        ref='invtable'
       />
     );
   };
 
-  handler() {
-    console.log('handling');
-    return this.rowID;
-  }
-
   render() {
-    const reset = React.createElement(
-      'button',
-      { type: 'button' },
-      '<i className="fa fa-refresh" aria-hidden="true">'
-    );
+    const reset = React.createElement('button', { type: 'button' }, 'Refresh');
 
     return (
       <div className="Inventory-page">
@@ -136,8 +184,6 @@ class Inventory extends React.Component {
     );
   }
 }
-
-
 
 Inventory.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
