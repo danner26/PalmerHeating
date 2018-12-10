@@ -110,8 +110,12 @@ export const GetInventory = () => {
 Meteor.methods({
   'inventory.remove'(invID) {
     console.log(invID);
-    check(invID, String);
 
-    console.log(GetInventory().remove({ _id: invID }));
+    console.log(InventoryItem.remove({ _id: invID }));
+  },
+  'inventory.edit'(theData) {
+    console.log(theData);
+
+    console.log();
   }
 });
