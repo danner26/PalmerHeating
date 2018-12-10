@@ -87,7 +87,7 @@ class Inventory extends React.Component {
         Roles.userIsInRole(Meteor.userId(), ['admin', 'secretary'])
       ) {
         return (
-          <div className="inventoryFunctionBtns">
+          <div className="inventoryFunctionBtns btn-group" >
             <EditInventoryPopup />
             <DeleteInventoryPopup {...this} onRowSelect={this.rowClick} />
           </div>
