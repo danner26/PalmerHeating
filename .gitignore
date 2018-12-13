@@ -31,7 +31,7 @@ bower_components
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/
-
+build/Release
 
 # Dependency directories
 node_modules/
@@ -61,4 +61,13 @@ typings/
 # next.js build output
 .next
 
-test\.json
+# mup
+.deploy
+
+# macOS
+.DS_Store
+
+# meteor
+.meteor/local/
+
+node_modules/
