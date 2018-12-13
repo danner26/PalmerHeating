@@ -67,4 +67,7 @@ typings/
 # macOS
 .DS_Store
 
+# meteor
+.meteor/local/
+
 node_modules/
