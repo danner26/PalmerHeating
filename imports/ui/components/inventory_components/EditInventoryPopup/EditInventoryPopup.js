@@ -2,7 +2,7 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 
-class AddInventoryPopup extends React.Component {
+class EditInventoryPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
@@ -22,12 +22,12 @@ class AddInventoryPopup extends React.Component {
     return (
       <div>
         <button
-          className="button"
+          className="button btn btn-primary"
           onClick={this.openModal}
           type="button"
           tabIndex={0}
         >
-          New Stock
+          Edit
         </button>
         <Popup
           open={this.state.open}
@@ -54,4 +54,4 @@ class AddInventoryPopup extends React.Component {
   }
 }
 
-export default AddInventoryPopup;
+export default EditInventoryPopup;

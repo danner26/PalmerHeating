@@ -2,7 +2,7 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 
-class DeleteInventoryPopup extends React.Component {
+class AddInventoryPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
@@ -22,12 +22,12 @@ class DeleteInventoryPopup extends React.Component {
     return (
       <div>
         <button
-          className="button"
+          className="button btn btn-success"
           onClick={this.openModal}
           type="button"
           tabIndex={0}
         >
-          Remove
+          New Stock
         </button>
         <Popup
           open={this.state.open}
@@ -54,4 +54,4 @@ class DeleteInventoryPopup extends React.Component {
   }
 }
 
-export default DeleteInventoryPopup;
+export default AddInventoryPopup;
