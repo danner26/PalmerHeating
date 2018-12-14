@@ -1,7 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import Mongo from 'meteor/mongo';
-import { check } from 'meteor/check';
-import { Random } from 'meteor/random';
 import SimpleSchema from 'simpl-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { LoggedInMixin } from 'meteor/tunifight:loggedin-mixin';

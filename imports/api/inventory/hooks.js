@@ -5,4 +5,4 @@
  */
 
 import { Meteor } from 'meteor/meteor';
-import Counters from './inventory_items.js';
+import InventoryItem from './inventory_items.js';

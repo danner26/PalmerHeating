@@ -17,25 +17,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import './Inventory.scss';
 
-const inventoryReducer = (state = [], action) => {
-  switch(action.type) {
-    case 'SET_INVENTORY':
-      return action.inventory;
-    default:
-      return state;
-  }
-};
-
-const reducers = combineReducers({ inventory: inventoryReducer});
-const store = createStore(reducers, {});
-
-Tracker.autorun(() => {
-  store.dispatch({
-    type: 'SET_INVENTORY',
-    inventory: GetInventory.find().fetch(),
-  });
-});
-
 class Inventory extends React.Component {
   constructor(props) {
     super(props);
@@ -47,13 +28,11 @@ class Inventory extends React.Component {
     }
   }
 
-  rowSelect = () => this.getRow()
+  rowSelect = () => this.state.rowID;
 
   rowClick = inv => {
     this.setState({ rowID: inv._id });
   }
-
-  getRow = () => this.state.rowID;
 
   getInventory = () => {
     const theInv = GetInventory;
@@ -89,7 +68,7 @@ class Inventory extends React.Component {
         return (
           <div className="inventoryFunctionBtns btn-group" >
             <EditInventoryPopup />
-            <DeleteInventoryPopup {...this} onRowSelect={this.rowClick} />
+            <DeleteInventoryPopup {...this} />
           </div>
         );
       }
