@@ -63,7 +63,7 @@
     "eslint-plugin-meteor": "^5.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
-    "jest": "^23.6.0",
+    "jest": "^29.3.1",
     "prettier": "^1.14.3",
     "regenerator-runtime": "^0.12.1"
   },
