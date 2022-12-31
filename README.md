@@ -1,5 +1,7 @@
 [![eslint: airbnb](https://img.shields.io/badge/eslint-airbnb-blue.svg)](https://github.com/airbnb/javascript)
 [![prettier](https://img.shields.io/badge/-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+This project was intended for a company we spoke with during a school project. The project was never pursued further, but I will retain it as a historical record.
+
 ## PalmerHeating
 
 PalmerHeating WebApp
